@@ -1,6 +1,7 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
 using Dashboard.Api.Monitoring.Dtos;
+using Dashboard.TestDoubles;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
@@ -17,7 +18,7 @@ namespace Dashboard.Api.Test
         [TestInitialize]
         public void Initialize()
         {
-            _server = new TestServer(new WebHostBuilder().UseStartup<Startup>());
+            _server = new TestServer(new WebHostBuilder().UseStartup<FakeStartup<Startup>>());
             _client = _server.CreateClient();
         }
 
