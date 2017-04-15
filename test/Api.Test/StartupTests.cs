@@ -34,7 +34,7 @@ namespace Dashboard.Api.Test
         {
             var json = await _client.GetStringAsync("/monitoring");
             var dto = JsonConvert.DeserializeObject<MonitoringDto>(json);
-            Assert.AreEqual("35 %", dto.CpuUsage);
+            Assert.AreEqual(1, dto.EventCount);
         }
 
         [TestCleanup]

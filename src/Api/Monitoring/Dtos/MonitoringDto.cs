@@ -2,6 +2,6 @@
 {
     public class MonitoringDto
     {
-        public string CpuUsage { get; set;  }
+        public long EventCount { get; set;  }
     }
 }

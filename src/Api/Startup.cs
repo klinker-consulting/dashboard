@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Dashboard.Api.General.Actions;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -9,6 +10,7 @@ namespace Dashboard.Api
     {
         public virtual void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IActionSource, ActionSource>();
             services.AddMvc();
         }
 
@@ -19,6 +21,7 @@ namespace Dashboard.Api
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
 
+            app.UseMiddleware<ActionsMiddleware>();
             app.UseMvc();
         }
     }
