@@ -23,8 +23,8 @@ namespace Dashboard.Api.Test.Monitoring
         [TestMethod]
         public async Task GetShouldGetEventCount()
         {
-            _actionSource.Dispatch(new Action(""));
-            _actionSource.Dispatch(new Action(""));
+            await _actionSource.Dispatch(new Action(""));
+            await _actionSource.Dispatch(new Action(""));
 
             var result = (OkObjectResult)await _controller.Get();
             Assert.AreEqual(2, ((MonitoringDto) result.Value).EventCount);

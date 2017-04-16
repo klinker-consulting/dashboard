@@ -20,7 +20,7 @@ namespace Dashboard.Api.Test.General.Actions
         {
             var action = new Action("");
             Action receivedAction = null;
-            _actionSrouce.Listen(a => receivedAction = a);
+            _actionSrouce.Listen<Action>(a => receivedAction = a);
 
             await _actionSrouce.Dispatch(action);
             Assert.AreSame(action, receivedAction);
@@ -31,7 +31,7 @@ namespace Dashboard.Api.Test.General.Actions
         {
             var action = new Action("");
             Action receivedAction = null;
-            _actionSrouce.Listen(a => receivedAction = a).Dispose();
+            _actionSrouce.Listen<Action>(a => receivedAction = a).Dispose();
 
             await _actionSrouce.Dispatch(action);
             Assert.IsNull(receivedAction);

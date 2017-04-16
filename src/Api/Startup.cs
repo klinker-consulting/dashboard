@@ -1,4 +1,6 @@
 ﻿using Dashboard.Api.General.Actions;
+using Dashboard.Api.Weather;
+using Dashboard.Api.Weather.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,7 +13,10 @@ namespace Dashboard.Api
         public virtual void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IActionSource, ActionSource>();
+            services.AddTransient<IWeatherHub, WeatherHub>();
+            services.AddSingleton<IWeatherUpdaterService, WeatherUpdaterService>();
             services.AddMvc();
+            services.AddSignalR();
         }
 
         public virtual void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
@@ -21,8 +26,15 @@ namespace Dashboard.Api
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
 
-            app.UseMiddleware<ActionsMiddleware>();
-            app.UseMvc();
+            app.UseMiddleware<ActionsMiddleware>()
+                .UseMvc()
+                .UseSignalR(r =>
+                {
+                    r.MapHub<WeatherHub>("/streams/weather");
+                });
+            app.UseWebSocketConnections();
+
+            app.ApplicationServices.GetService<IWeatherUpdaterService>().Start();
         }
     }
 }
