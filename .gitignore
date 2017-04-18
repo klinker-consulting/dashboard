@@ -2,3 +2,7 @@
 .vs/
 bin/
 obj/
+node_modules/
+src/UI/root/**/*.js
+src/UI/root/**/*.map
+wwwroot/

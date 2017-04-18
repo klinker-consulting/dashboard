@@ -10,10 +10,10 @@
     <Folder Include="wwwroot\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore" Version="2.0.0-preview1-24394" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.0-preview1-24394" />
-    <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.0.0-preview1-24394" />
-    <PackageReference Include="Microsoft.AspNetCore.WebSockets" Version="2.0.0-preview1-24394" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.0.0-preview1-24481" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.0-preview1-24481" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.0.0-preview1-24481" />
+    <PackageReference Include="Microsoft.AspNetCore.WebSockets" Version="2.0.0-preview1-24481" />
     <PackageReference Include="System.Reactive" Version="3.1.1" />
   </ItemGroup>
   <ItemGroup>
